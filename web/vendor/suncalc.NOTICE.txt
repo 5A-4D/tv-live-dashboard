@@ -1,0 +1,5 @@
+SunCalc v1.9.0, Copyright (c) 2014 Vladimir Agafonkin.
+Source: https://github.com/mourner/suncalc
+Pinned commit: f6fe07c430af198f7c42788f01989a22a1269b08
+Unmodified suncalc.js; BSD 2-Clause license in suncalc.LICENSE.txt.
+Used locally for the Example location sunrise/sunset and twilight schedule. No network or account access.

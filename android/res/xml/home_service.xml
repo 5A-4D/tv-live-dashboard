@@ -1,0 +1,7 @@
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+ android:description="@string/accessibility_description"
+ android:accessibilityEventTypes="typeWindowStateChanged"
+ android:packageNames="com.google.android.apps.tv.launcherx,com.google.android.tvlauncher"
+ android:accessibilityFeedbackType="feedbackGeneric"
+ android:notificationTimeout="100"
+ android:canRetrieveWindowContent="false" />

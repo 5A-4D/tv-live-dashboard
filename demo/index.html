@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>TV Live Dashboard</title>
+  <link rel="stylesheet" href="../web/style.css">
+  <script src="../web/config.js" defer></script>
+  <script src="demo.js" defer></script>
+  <script src="../web/vendor/suncalc.js" defer></script>
+  <script src="../web/snowfall.js" defer></script>
+  <script src="../web/daylight.js" defer></script>
+  <script src="../web/dashboard.js" defer></script>
+</head>
+<body>
+  <div id="wallpaper-layer" aria-hidden="true"></div>
+  <canvas id="snowfall-layer" aria-hidden="true"></canvas>
+  <main id="home" class="home">
+    <header class="header">
+      <div class="brand"><span class="monogram">TV</span><div><strong>TV LIVE</strong><span>YOUR SPACE, AT A GLANCE</span></div></div>
+      <div class="header-actions"><button id="teamsButton" class="teams-button" data-nav><span class="teams-mark" aria-hidden="true">T</span><span id="teamsLabel">Teams · Checking</span><span id="teamsDot" class="service-dot stale"></span></button><span id="linkBadge" class="badge"><i></i><span>Connecting to Home server</span></span><button class="icon-button" id="settingsButton" data-nav aria-label="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6l1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+    </header>
+
+    <section class="hero">
+      <div class="welcome"><div class="eyebrow" id="date">WELCOME HOME</div><div id="welcomeMessage"><h1 id="greeting">Welcome home, Guest.</h1><p id="daySummary">Your apps. Your day. Your space.</p></div><button id="teamsNotice" class="pending-notice" data-nav hidden><span class="notice-bell" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10 21h4"/></svg></span><span class="notice-copy"><strong id="teamsNoticeTitle">Teams notification</strong><small id="teamsNoticeSubtitle">New notification received · Select to view</small></span><span class="notice-arrow" aria-hidden="true">→</span></button></div>
+      <button id="weatherButton" class="weather" data-nav aria-label="Local weather details"><span id="weatherLocation" class="weather-location">LAKEVIEW</span><span class="weather-current"><strong id="weatherTemp">—°F</strong><span id="weatherCondition">Checking weather</span></span><span id="weatherForecast" class="weather-forecast">Local forecast in Fahrenheit</span><span class="weather-credit">Weather: Open-Meteo</span></button>
+      <div class="clock"><div><span id="clockTime">--:--</span><span id="clockPeriod"></span></div><span class="clock-zone">UTC</span></div>
+    </section>
+
+    <section class="apps" aria-label="Favorite apps">
+      <button class="app-tile jellyfin" data-nav data-package="org.jellyfin.androidtv" id="firstApp"><span class="app-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 7 43 39H5Z"/><path d="M24 18 34 35H14Z"/></svg></span><span class="app-copy"><strong>Jellyfin</strong><small>Your library</small></span><span class="tile-arrow">↗</span></button>
+      <button class="app-tile youtube" data-nav data-package="com.google.android.youtube.tv"><span class="app-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="10" width="40" height="28" rx="9"/><path d="m20 17 12 7-12 7Z"/></svg></span><span class="app-copy"><strong>YouTube</strong><small>Watch something</small></span><span class="tile-arrow">↗</span></button>
+      <button class="app-tile tailscale" data-nav data-package="com.tailscale.ipn"><span class="app-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><g><circle cx="12" cy="12" r="4"/><circle cx="24" cy="12" r="4"/><circle cx="36" cy="12" r="4"/><circle cx="12" cy="24" r="4"/><circle cx="24" cy="24" r="4"/><circle cx="36" cy="24" r="4"/><circle cx="12" cy="36" r="4"/><circle cx="24" cy="36" r="4"/><circle cx="36" cy="36" r="4"/></g></svg></span><span class="app-copy"><strong>Tailscale</strong><small>Your private network</small></span><span class="tile-arrow">↗</span></button>
+      <button class="app-tile all-apps" id="allAppsButton" data-nav><span class="grid-mark">▦</span><span class="app-copy"><strong>All apps</strong><small id="appCount">Browse your TV</small></span></button>
+    </section>
+
+    <section class="panels">
+      <article class="panel reminders-panel"><div class="panel-heading"><div><h2>Reminders <span id="reminderCount" class="count">—</span></h2></div><button class="text-button" id="remindersButton" data-nav>View all <span>→</span></button></div><div id="reminderPreview" class="reminder-preview"><p class="empty-state">Your reminders will appear when Home server connects.</p></div></article>
+      <article class="panel work-panel"><div class="panel-heading"><div><h2>Work today</h2></div><button class="text-button" id="workButton" data-nav>Week <span>→</span></button></div><div id="workPreview"><p class="empty-state">Checking your availability…</p></div></article>
+      <article class="panel news-panel"><div class="panel-heading"><div><h2>Headlines</h2></div><button class="text-button" id="newsButton" data-nav>More <span>→</span></button></div><div id="newsPreview"><p class="empty-state">Fetching your headlines…</p></div></article>
+      <article class="panel services-panel"><div class="panel-heading"><div><h2>Systems</h2></div><button class="text-button" id="servicesButton" data-nav>Details <span>→</span></button></div><div id="servicePreview" class="service-preview"><div class="service"><span class="service-dot unknown"></span><span>Jarvis</span><strong>Connecting</strong></div><div class="service"><span class="service-dot unknown"></span><span>Jellyfin</span><strong>Connecting</strong></div><div class="host-uptime"><span>Home server uptime</span><strong id="hostUptime">—</strong></div></div></article>
+      <article class="panel codex-panel"><div class="panel-heading"><div><h2>Codex usage</h2></div><span id="usageFreshness" class="tiny-note">Connecting</span></div><div id="codexPreview"><p class="empty-state">Checking your usage…</p></div></article>
+    </section>
+
+    <footer class="footer"><button id="alertsButton" class="alerts-button" data-nav aria-label="Dashboard alerts and breaking service news"><span class="alerts-copy"><span class="alert-row"><span id="alertDot" class="service-dot stale"></span><span class="alert-label">ALERTS</span><span id="alertMessage">Checking alerts…</span></span><span class="alert-row breaking-row"><span id="breakingDot" class="service-dot unknown"></span><span id="breakingLabel" class="alert-label">STATUS</span><span id="breakingMessage">Checking service news…</span></span></span><span id="alertCount" class="alert-count"></span></button><span id="freshness" class="freshness">Waiting for data</span></footer>
+  </main>
+
+  <section id="overlay" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="overlayTitle"><div class="modal"><div class="modal-heading"><div><span class="eyebrow" id="overlayEyebrow">TV LIVE DASHBOARD</span><h2 id="overlayTitle"></h2></div><button class="icon-button" data-nav id="closeOverlay" aria-label="Close">×</button></div><div id="overlayContent" class="modal-content"></div><div class="modal-footer"><span>Use the arrows to navigate · OK to select</span><span>BACK to return</span></div></div></section>
+  <div id="toast" class="toast" hidden></div>
+</body>
+</html>

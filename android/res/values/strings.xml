@@ -1,0 +1,3 @@
+<resources>
+  <string name="accessibility_description">Returns to TV Live Dashboard when the Google home screen appears. Receives window-change events only from the Google launcher; does not read screen contents.</string>
+</resources>

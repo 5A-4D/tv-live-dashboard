@@ -1,0 +1,4 @@
+Snowfall motion adapted from JavaScript Snow by Peter Wetherall (MIT).
+Project: https://github.com/pweth/javascript-snow
+Reference revision: fd2ea0b8517c6226a0b8ec1fbde9cecce5af3756
+Adaptations: local theme integration, bounded particle count and frame rate, time-based movement, pause/resume lifecycle and a saved motion toggle.
